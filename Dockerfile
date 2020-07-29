@@ -7,7 +7,8 @@ RUN set -ex; \
 		zip
 
 # Add xDebug
-RUN pecl install xdebug \
+RUN set -ex; \
+    pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 # Remove the default error logging INI
@@ -32,6 +33,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
 # Enable BackupBuddy API
-RUN  echo 'define( \'BACKUPBUDDY_API_ENABLE\', true ); // Enable BackupBuddy Deployment access.' >> /var/www/html/wp-config.php
+RUN set -ex; \
+    echo 'define( "BACKUPBUDDY_API_ENABLE", true );' >> /var/www/html/wp-config.php
 
 #https://github.com/docker-library/wordpress/blob/master/Dockerfile-debian.template
