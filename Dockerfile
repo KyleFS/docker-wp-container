@@ -31,6 +31,7 @@ RUN { \
 		echo 'max_execution_time = 35'; \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
+# Enable BackupBuddy API
 RUN  echo 'define( \'BACKUPBUDDY_API_ENABLE\', true ); // Enable BackupBuddy Deployment access.' >> /var/www/html/wp-config.php
 
 #https://github.com/docker-library/wordpress/blob/master/Dockerfile-debian.template
