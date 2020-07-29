@@ -27,7 +27,7 @@ RUN { \
 
 		echo 'upload_max_filesize = 20M'; \
 		echo 'post_max_size = 24M'; \
-		echo 'memory_limit = 512M'; \
+		echo 'memory_limit = 1024M'; \
 		echo 'max_execution_time = 35'; \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
