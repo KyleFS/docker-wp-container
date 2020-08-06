@@ -3,7 +3,7 @@ FROM wordpress:latest
 # Add our Debian packages
 RUN set -ex; \
         apt-get update && apt-get install -y \
-		mysql-client-5.7 \
+		mariadb-client-10.3 \
 		unzip \
 		zip
 
