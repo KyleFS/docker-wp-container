@@ -3,6 +3,7 @@ FROM wordpress:latest
 # Add our Debian packages
 RUN set -ex; \
         apt-get update && apt-get install -y \
+		mysql-client \
 		unzip \
 		zip
 
