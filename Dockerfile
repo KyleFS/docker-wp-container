@@ -26,12 +26,10 @@ RUN { \
 		echo 'ignore_repeated_errors = On'; \
 		echo 'ignore_repeated_source = Off'; \
 		echo 'html_errors = On'; \
-
 		echo 'upload_max_filesize = 20M'; \
 		echo 'post_max_size = 24M'; \
 		echo 'memory_limit = 1024M'; \
 		echo 'max_execution_time = 300'; \
-
 		echo 'xdebug.remote_enable = 1'; \
         echo 'xdebug.remote_connect_back = 1'; \
         echo 'xdebug.remote_port = 9000'; \
