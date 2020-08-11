@@ -31,7 +31,7 @@ RUN { \
         echo 'max_execution_time = 300'; \
         echo 'xdebug.remote_enable = 1'; \
         echo 'xdebug.remote_connect_back = 1'; \
-        echo 'xdebug.remote_port = 9000'; \
+        echo 'xdebug.remote_port = 9001'; \
         echo 'xdebug.scream = 0'; \
         echo 'xdebug.cli_color = 1'; \
         echo 'xdebug.show_local_vars = 1'; \
