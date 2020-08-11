@@ -38,6 +38,6 @@ RUN { \
         echo 'xdebug.show_local_vars = 1'; \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
-RUN chown root:root -R /var/www/
+RUN chown -R root:root /var/www/
 
 #https://github.com/docker-library/wordpress/blob/master/Dockerfile-debian.template
