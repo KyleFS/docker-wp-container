@@ -1,9 +1,8 @@
-FROM wordpress:latest
+FROM wordpress:fpm
 
 # Add our Debian packages
 RUN set -ex; \
     apt-get update && apt-get install -y \
-    mariadb-client-10.3 \
     unzip \
     zip
 
