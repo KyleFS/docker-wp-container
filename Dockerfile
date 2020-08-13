@@ -1,21 +1,40 @@
-FROM wordpress:fpm
+FROM php:7.4-fpm
 
-# Add our Debian packages
 RUN set -ex; \
-    apt-get update && apt-get install -y \
-    unzip \
-    zip
-
-# Add xDebug
-RUN set -ex; \
-    pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
-# Remove the default error logging INI
-RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
+	\
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		libfreetype6-dev \
+		libjpeg-dev \
+		libmagickwand-dev \
+		libpng-dev \
+		libzip-dev \
+		unzip \
+		zip
+	; \
+	\
+	docker-php-ext-configure gd --with-freetype --with-jpeg; \
+	docker-php-ext-install -j "$(nproc)" \
+		bcmath \
+		exif \
+		gd \
+		mysqli \
+		zip \
+	; \
+	\
+	pecl install imagick-3.4.4; \
+	docker-php-ext-enable imagick; \
+	pecl install xdebug; \
+	docker-php-ext-enable xdebug; \
+	docker-php-ext-enable opcache;
 
 # Provide a clean set of INI settings
 RUN { \
+        echo 'opcache.memory_consumption=128'; \
+		echo 'opcache.interned_strings_buffer=8'; \
+		echo 'opcache.max_accelerated_files=4000'; \
+		echo 'opcache.revalidate_freq=2'; \
+		echo 'opcache.fast_shutdown=1'; \
         echo 'error_reporting = E_ERROR | E_WARNING | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_COMPILE_WARNING | E_RECOVERABLE_ERROR'; \
         echo 'display_errors = On'; \
         echo 'display_startup_errors = On'; \
@@ -36,6 +55,3 @@ RUN { \
         echo 'xdebug.cli_color = 1'; \
         echo 'xdebug.show_local_vars = 1'; \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
-
-
-#https://github.com/docker-library/wordpress/blob/master/Dockerfile-debian.template
