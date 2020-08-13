@@ -10,8 +10,7 @@ RUN set -ex; \
 		libpng-dev \
 		libzip-dev \
 		unzip \
-		zip
-	; \
+		zip; \
 	\
 	docker-php-ext-configure gd --with-freetype --with-jpeg; \
 	docker-php-ext-install -j "$(nproc)" \
@@ -19,8 +18,7 @@ RUN set -ex; \
 		exif \
 		gd \
 		mysqli \
-		zip \
-	; \
+		zip; \
 	\
 	pecl install imagick-3.4.4; \
 	docker-php-ext-enable imagick; \
