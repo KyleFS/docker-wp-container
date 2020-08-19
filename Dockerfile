@@ -1,49 +1,18 @@
-FROM php:fpm
+FROM wordpress:fpm
 
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-# Ghostscript is required for rendering PDF previews
-		ghostscript \
-	; \
-	rm -rf /var/lib/apt/lists/*
-
-# install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions)
+# Add our Debian packages
 RUN set -ex; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		libfreetype6-dev \
-		libjpeg-dev \
-		libmagickwand-dev \
-		libpng-dev \
-		libzip-dev \
-		unzip \
-		zip \
-	; \
-	\
-	docker-php-ext-configure gd --with-freetype --with-jpeg; \
-	docker-php-ext-install -j "$(nproc)" \
-		bcmath \
-		exif \
-		gd \
-		mysqli \
-		zip \
-	; \
-	pecl install imagick-3.4.4; \
-	docker-php-ext-enable imagick; \
-	pecl install xdebug; \
-	docker-php-ext-enable xdebug
+    apt-get update && apt-get install -y \
+    unzip \
+    zip
 
-# Add opcache and upstream defaults
-RUN set -eux; \
-	docker-php-ext-enable opcache; \
-	{ \
-		echo 'opcache.memory_consumption=128'; \
-		echo 'opcache.interned_strings_buffer=8'; \
-		echo 'opcache.max_accelerated_files=4000'; \
-		echo 'opcache.revalidate_freq=2'; \
-		echo 'opcache.fast_shutdown=1'; \
-	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+# Add xDebug
+RUN set -ex; \
+    pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+# Remove the default error logging INI
+RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
 # Provide a clean set of INI settings
 RUN { \
