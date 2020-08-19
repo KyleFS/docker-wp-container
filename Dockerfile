@@ -44,5 +44,4 @@ RUN set -ex; \
     chmod +x /usr/local/bin/wp; \
     wp --allow-root --version
 
-RUN set -ex; \
-    echo "wp() {\n/usr/local/bin/wp  --allow-root\n}" >> /root/.bashrc
+RUN echo 'alias wp="wp --allow-root"' >>  /root/.bashrc
