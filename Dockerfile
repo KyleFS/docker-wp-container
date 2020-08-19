@@ -3,6 +3,7 @@ FROM wordpress:fpm
 # Add our Debian packages
 RUN set -ex; \
     apt-get update && apt-get install -y \
+    gnupg \
     unzip \
     zip
 
@@ -38,8 +39,11 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
 RUN set -ex; \
-    wget "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"; \
+    url -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
     chmod +x wp-cli.phar; \
     sudo mv wp-cli.phar /usr/local/bin/wp; \
+    wp --allow-root --version
 
-#https://github.com/docker-library/wordpress/blob/master/Dockerfile-debian.template
+VOLUME /var/www/html
+USER www-data
+CMD ["wp", "shell"]
