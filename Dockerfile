@@ -48,4 +48,4 @@ RUN echo 'alias wp="wp --allow-root"' >>  /root/.bashrc
 
 COPY ./import_all_sql.sh /var/www/import_all_sql.sh
 
-RUN CHMOD +x /var/www/import_all_sql.sh
+RUN chmod +x /var/www/import_all_sql.sh
