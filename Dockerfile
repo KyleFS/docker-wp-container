@@ -37,7 +37,7 @@ RUN { \
         echo 'xdebug.scream = 0'; \
         echo 'xdebug.cli_color = 1'; \
         echo 'xdebug.show_local_vars = 1'; \
-	} > /usr/local/etc/php/conf.d/DOCKER.ini
+	} > /usr/local/etc/php/conf.d/DEV.ini
 
 RUN set -ex; \
     curl -o /usr/local/bin/wp -fSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
