@@ -4,9 +4,9 @@ FROM wordpress:fpm
 RUN set -ex; \
     apt-get update && apt-get install -y \
     bash \
+    curl \
     less \
-    mysql-client \
-    gnupg \
+    mariadb-client \
     unzip \
     zip
 
