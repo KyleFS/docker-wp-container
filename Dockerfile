@@ -45,4 +45,4 @@ RUN set -ex; \
     wp --allow-root --version
 
 RUN set -ex; \
-    echo "wp() { /usr/local/bin/wp \"$@\" --allow-root } " >> /root/.bashrc
+    echo "wp() {\n/usr/local/bin/wp  --allow-root\n}" >> /root/.bashrc
