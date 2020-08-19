@@ -3,6 +3,9 @@ FROM wordpress:fpm
 # Add our Debian packages
 RUN set -ex; \
     apt-get update && apt-get install -y \
+    bash \
+    less \
+    mysql-client \
     gnupg \
     unzip \
     zip
@@ -39,6 +42,6 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
 RUN set -ex; \
-    curl /usr/local/bin/wp -fSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
+    curl -o /usr/local/bin/wp -fSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
     chmod +x /usr/local/bin/wp; \
     wp --allow-root --version
