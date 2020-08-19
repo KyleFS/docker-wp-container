@@ -43,3 +43,6 @@ RUN set -ex; \
     curl -o /usr/local/bin/wp -fSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
     chmod +x /usr/local/bin/wp; \
     wp --allow-root --version
+
+RUN set -ex; \
+    echo "wp() { /usr/local/bin/wp \"$@\" --allow-root } " >> /root/.bashrc
