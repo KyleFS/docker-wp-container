@@ -3,8 +3,6 @@ FROM wordpress:fpm
 # Add our Debian packages
 RUN set -ex; \
     apt-get update && apt-get install -y \
-    bash \
-    curl \
     less \
     mariadb-client \
     unzip \
