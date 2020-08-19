@@ -39,7 +39,6 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/DOCKER.ini
 
 RUN set -ex; \
-    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
-    chmod +x wp-cli.phar; \
-    mv wp-cli.phar /usr/local/bin/wp; \
+    curl /usr/local/bin/wp -fSL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
+    chmod +x /usr/local/bin/wp; \
     wp --allow-root --version
