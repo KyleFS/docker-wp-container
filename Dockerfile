@@ -43,7 +43,3 @@ RUN set -ex; \
     chmod +x wp-cli.phar; \
     mv wp-cli.phar /usr/local/bin/wp; \
     wp --allow-root --version
-
-VOLUME /var/www/html
-USER www-data
-CMD ["wp", "shell"]
