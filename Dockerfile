@@ -8,11 +8,6 @@ RUN set -ex; \
     unzip \
     zip
 
-# Add xDebug
-RUN set -ex; \
-    pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
 # Remove the default error logging INI
 RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
@@ -32,12 +27,6 @@ RUN { \
         echo 'post_max_size = 24M'; \
         echo 'memory_limit = 1024M'; \
         echo 'max_execution_time = 300'; \
-        echo 'xdebug.remote_enable = 1'; \
-        echo 'xdebug.remote_connect_back = 1'; \
-        echo 'xdebug.remote_port = 9001'; \
-        echo 'xdebug.scream = 0'; \
-        echo 'xdebug.cli_color = 1'; \
-        echo 'xdebug.show_local_vars = 1'; \
         echo 'pm = dynamic'; \
         echo 'pm.max_children = 20'; \
         echo 'pm.start_servers = 1'; \
