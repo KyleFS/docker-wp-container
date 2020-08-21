@@ -16,9 +16,10 @@ RUN set -ex; \
 # Remove the default error logging INI
 RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
+COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
 # Provide a clean set of INI settings
 RUN { \
-        echo 'error_reporting = E_ERROR | E_WARNING | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_COMPILE_WARNING | E_RECOVERABLE_ERROR'; \
+        echo 'error_reporting = E_ALL & ~E_NOTICE'; \
         echo 'display_errors = On'; \
         echo 'display_startup_errors = On'; \
         echo 'log_errors = On'; \
@@ -37,6 +38,11 @@ RUN { \
         echo 'xdebug.scream = 0'; \
         echo 'xdebug.cli_color = 1'; \
         echo 'xdebug.show_local_vars = 1'; \
+        echo 'pm = dynamic'; \
+        echo 'pm.max_children = 20'; \
+        echo 'pm.start_servers = 1'; \
+        echo 'pm.min_spare_servers = 1'; \
+        echo 'pm.max_spare_servers = 3'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
