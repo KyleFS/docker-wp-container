@@ -13,10 +13,12 @@ RUN set -ex; \
     pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+#Add FPM settings
+COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
+
 # Remove the default error logging INI
 RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
-COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
 # Provide a clean set of INI settings
 RUN { \
         echo 'error_reporting = E_ALL & ~E_NOTICE'; \
@@ -38,11 +40,6 @@ RUN { \
         echo 'xdebug.scream = 0'; \
         echo 'xdebug.cli_color = 1'; \
         echo 'xdebug.show_local_vars = 1'; \
-        echo 'pm = dynamic'; \
-        echo 'pm.max_children = 20'; \
-        echo 'pm.start_servers = 1'; \
-        echo 'pm.min_spare_servers = 1'; \
-        echo 'pm.max_spare_servers = 3'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
