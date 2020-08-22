@@ -8,10 +8,12 @@ RUN set -ex; \
     unzip \
     zip
 
+#Add FPM settings
+COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
+
 # Remove the default error logging INI
 RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
-COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
 # Provide a clean set of INI settings
 RUN { \
         echo 'error_reporting = E_ALL & ~E_NOTICE'; \
@@ -26,12 +28,7 @@ RUN { \
         echo 'upload_max_filesize = 40M'; \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
-        echo 'max_execution_time = 300'; \
-        echo 'pm = dynamic'; \
-        echo 'pm.max_children = 20'; \
-        echo 'pm.start_servers = 1'; \
-        echo 'pm.min_spare_servers = 1'; \
-        echo 'pm.max_spare_servers = 3'; \
+        echo 'max_execution_time = 600'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
