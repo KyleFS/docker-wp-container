@@ -33,7 +33,7 @@ RUN { \
         echo 'upload_max_filesize = 40M'; \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
-        echo 'max_execution_time = 600'; \
+        echo 'max_execution_time = 120'; \
         echo 'xdebug.remote_enable = 1'; \
         echo 'xdebug.remote_connect_back = 1'; \
         echo 'xdebug.remote_port = 9001'; \
