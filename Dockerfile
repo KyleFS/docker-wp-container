@@ -28,7 +28,7 @@ RUN { \
         echo 'upload_max_filesize = 40M'; \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
-        echo 'max_execution_time = 60'; \
+        echo 'max_execution_time = 900'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
