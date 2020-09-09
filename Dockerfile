@@ -11,7 +11,7 @@ RUN set -ex; \
 
 # Add intl
 RUN set -ex; \
-    && docker-php-ext-configure intl \
+    docker-php-ext-configure intl \
   	&& docker-php-ext-install intl
 
 #Add FPM settings
