@@ -11,7 +11,8 @@ RUN set -ex; \
 # Add xDebug
 RUN set -ex; \
     pecl install xdebug \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
+    && docker-php-ext-install intl
 
 #Add FPM settings
 COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
