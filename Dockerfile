@@ -8,6 +8,10 @@ RUN set -ex; \
     unzip \
     zip
 
+# Add intl
+RUN set -ex; \
+    && docker-php-ext-install intl
+
 #Add FPM settings
 COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
 
@@ -29,6 +33,12 @@ RUN { \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
         echo 'max_execution_time = 900'; \
+        echo 'xdebug.remote_enable = 1'; \
+        echo 'xdebug.remote_connect_back = 1'; \
+        echo 'xdebug.remote_port = 9001'; \
+        echo 'xdebug.scream = 0'; \
+        echo 'xdebug.cli_color = 1'; \
+        echo 'xdebug.show_local_vars = 1'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
