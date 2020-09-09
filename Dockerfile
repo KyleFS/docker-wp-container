@@ -4,15 +4,17 @@ FROM wordpress:fpm
 RUN set -ex; \
     apt-get update && apt-get install -y \
     less \
+    libicu-dev \
     mariadb-client \
     unzip \
     zip
 
-# Add xDebug
+# Add xDebug & intl
 RUN set -ex; \
     pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && docker-php-ext-install intl
+    && docker-php-ext-configure intl \
+  	&& docker-php-ext-install intl
 
 #Add FPM settings
 COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
