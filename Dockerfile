@@ -38,12 +38,8 @@ RUN { \
         echo 'memory_limit = 1024M'; \
         echo 'max_execution_time = 900'; \
         echo 'xdebug.mode = debug'; \
-        echo 'xdebug.discover_client_host = 1'; \
-        echo 'xdebug.client_port = 9003'; \
-        echo 'xdebug.scream = 0'; \
-        echo 'xdebug.cli_color = 1'; \
-        echo 'xdebug.show_local_vars = 1'; \
-        echo 'xdebug.idekey = PHPSTORM'; \
+        echo 'xdebug.client_host = 192.168.1.111'; \
+
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
