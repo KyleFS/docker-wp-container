@@ -43,6 +43,7 @@ RUN { \
         echo 'xdebug.scream = 0'; \
         echo 'xdebug.cli_color = 1'; \
         echo 'xdebug.show_local_vars = 1'; \
+        echo 'xdebug.idekey = PHPSTORM'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
