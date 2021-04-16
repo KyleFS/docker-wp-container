@@ -50,6 +50,6 @@ COPY ./import_all_sql.sh /var/www/import_all_sql.sh
 
 RUN chmod +x /var/www/import_all_sql.sh
 
-COPY ./custom-entrypoint.sh /usr/local/bin/custom-entrypoint.sh
+COPY ./dev-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
 
 ENTRYPOINT ["custom-entrypoint.sh"]
