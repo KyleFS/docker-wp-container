@@ -52,4 +52,4 @@ RUN chmod +x /var/www/import_all_sql.sh
 
 COPY ./dev-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
 
-ENTRYPOINT ["custom-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/custom-entrypoint.sh"]
