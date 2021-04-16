@@ -37,10 +37,6 @@ RUN { \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
         echo 'max_execution_time = 900'; \
-        echo 'xdebug.mode = debug'; \
-        echo 'xdebug.client_host = 192.168.1.111'; \
-        echo 'xdebug.client_port = 9003'; \
-
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
@@ -53,3 +49,7 @@ RUN echo 'alias wp="wp --allow-root"' >>  /root/.bashrc
 COPY ./import_all_sql.sh /var/www/import_all_sql.sh
 
 RUN chmod +x /var/www/import_all_sql.sh
+
+COPY docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
