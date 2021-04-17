@@ -37,6 +37,7 @@ RUN { \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
         echo 'max_execution_time = 900'; \
+        echo 'xdebug.client_port = 9003'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
@@ -50,4 +51,5 @@ RUN chmod +x /var/www/import_all_sql.sh
 
 COPY dev-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
 RUN chmod +x /usr/local/bin/dev-entrypoint.sh
-CMD ["dev-entrypoint.sh"]
+ENTRYPOINT ["dev-entrypoint.sh"]
+CMD ["debug", "192.168.1.111"]
