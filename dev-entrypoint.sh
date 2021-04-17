@@ -1,6 +1,6 @@
 #!/bin/sh
-echo "xdebug.mode = %1
-xdebug.client_host = %2" >> /usr/local/etc/php/conf.d/dev.ini
+echo "xdebug.mode = $1
+xdebug.client_host = $2" >> /usr/local/etc/php/conf.d/dev.ini
 
 kill -USR2 1
 
