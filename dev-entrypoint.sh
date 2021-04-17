@@ -5,4 +5,4 @@ xdebug.client_port = 9003" >> /usr/local/etc/php/conf.d/dev.ini
 
 kill -USR2 1
 
-exec /usr/local/bin/docker-entrypoint.sh "$@"
+exec /usr/local/bin/docker-entrypoint.sh php-fpm
