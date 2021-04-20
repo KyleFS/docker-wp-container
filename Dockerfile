@@ -22,6 +22,8 @@ COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
 # Remove the default error logging INI
 RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
+RUN mkdir /var/www/xdebug
+
 # Provide a clean set of INI settings
 RUN { \
         echo 'error_reporting = E_ALL & ~E_NOTICE'; \
@@ -38,6 +40,7 @@ RUN { \
         echo 'memory_limit = 1024M'; \
         echo 'max_execution_time = 900'; \
         echo 'xdebug.client_port = 9003'; \
+        echo 'xdebug.output_dir  = /var/www/xdebug'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
