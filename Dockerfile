@@ -23,6 +23,7 @@ COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
 RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 
 RUN mkdir /var/www/xdebug
+RUN chown www-data:www-data /var/www/xdebug
 
 # Provide a clean set of INI settings
 RUN { \
