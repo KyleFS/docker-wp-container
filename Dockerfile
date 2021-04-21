@@ -41,7 +41,7 @@ RUN { \
         echo 'max_execution_time = 900'; \
         echo 'xdebug.client_port = 9003'; \
         echo 'xdebug.output_dir  = /var/www/xdebug'; \
-        echo 'xdebug.scream = 1'; \
+        echo 'xdebug.start_with_request = trigger'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
 RUN set -ex; \
