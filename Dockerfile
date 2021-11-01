@@ -34,7 +34,6 @@ RUN { \
         echo 'display_errors = On'; \
         echo 'display_startup_errors = On'; \
         echo 'log_errors = On'; \
-        echo 'error_log = /var/www/log/php_error_log'; \
         echo 'log_errors_max_len = 1024'; \
         echo 'ignore_repeated_errors = On'; \
         echo 'ignore_repeated_source = Off'; \
