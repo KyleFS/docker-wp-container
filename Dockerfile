@@ -25,6 +25,9 @@ RUN rm -f /usr/local/etc/php/conf.d/error-logging.ini
 RUN mkdir /var/www/xdebug
 RUN chown www-data:www-data /var/www/xdebug
 
+RUN mkdir /var/www/log
+RUN chown www-data:www-data /var/www/log
+
 # Provide a clean set of INI settings
 RUN { \
         echo 'error_reporting = E_ALL & ~E_NOTICE'; \
