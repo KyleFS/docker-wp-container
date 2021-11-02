@@ -1,9 +1,6 @@
 #!/bin/sh
 echo "xdebug.mode = $1
-xdebug.client_host = $2
-error_log = /var/www/log/$3/php_error_log" >> /usr/local/etc/php/conf.d/dev.ini
-
-mkdir /var/www/log/$3
+xdebug.client_host = $2" >> /usr/local/etc/php/conf.d/dev.ini
 
 # This kills the process to reload the new config
 # https://stackoverflow.com/a/43076457
