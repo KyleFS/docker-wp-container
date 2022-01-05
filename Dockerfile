@@ -42,6 +42,7 @@ RUN { \
         echo 'upload_max_filesize = 40M'; \
         echo 'post_max_size = 48M'; \
         echo 'memory_limit = 1024M'; \
+        echo 'max_input_vars = 3000'; \
         echo 'max_execution_time = 900'; \
         echo 'xdebug.client_port = 9003'; \
         echo 'xdebug.output_dir  = /var/www/xdebug'; \
