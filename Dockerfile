@@ -47,6 +47,8 @@ RUN { \
         echo 'xdebug.client_port = 9003'; \
         echo 'xdebug.output_dir  = /var/www/xdebug'; \
         echo 'xdebug.start_with_request = trigger'; \
+        echo 'xdebug.profiler_output_name = profile.%R'; \
+        echo 'xdebug.profiler_append = 1'; \
         echo 'xdebug.scream = 1'; \
 	} > /usr/local/etc/php/conf.d/dev.ini
 
