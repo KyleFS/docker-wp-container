@@ -34,7 +34,6 @@ RUN { \
         echo 'display_errors = On'; \
         echo 'display_startup_errors = On'; \
         echo 'log_errors = On'; \
-        echo 'error_log = /var/www/log/php_error_log'; \
         echo 'log_errors_max_len = 1024'; \
         echo 'ignore_repeated_errors = On'; \
         echo 'ignore_repeated_source = Off'; \
@@ -65,4 +64,4 @@ RUN chmod +x /var/www/import_all_sql.sh
 COPY dev-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
 RUN chmod +x /usr/local/bin/dev-entrypoint.sh
 ENTRYPOINT ["dev-entrypoint.sh"]
-CMD ["debug", "192.168.1.111"]
+CMD ["debug", "127.0.0.1"]
