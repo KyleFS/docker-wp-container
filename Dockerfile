@@ -37,7 +37,7 @@ RUN { \
         echo 'log_errors_max_len = 1024'; \
         echo 'ignore_repeated_errors = On'; \
         echo 'ignore_repeated_source = Off'; \
-        echo 'error_log = /proc/self/fd/2'; \
+        echo 'error_log = /proc/self/fd/1'; \
         echo 'html_errors = On'; \
         echo 'upload_max_filesize = 40M'; \
         echo 'post_max_size = 48M'; \
