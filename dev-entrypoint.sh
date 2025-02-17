@@ -21,5 +21,5 @@ wp --allow-root --quiet plugin install query-monitor --activate --force
 wp --allow-root --quiet config shuffle-salts
 wp --allow-root --quiet rewrite flush
 
-# Run PHP-FPM.
-exec php-fpm
+# Run the base  images entrypoint.
+exec /usr/local/bin/docker-entrypoint.sh "$@"
