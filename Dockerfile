@@ -38,7 +38,7 @@ RUN set -ex; \
 # Copy cron files, set permissions, then start the service.
 COPY cron /usr/local/bin
 RUN chmod +x /usr/local/bin/wp-cron.sh && \
-	chmod +x /usr/local/bin/optimize-db.sh && \
+	chmod +x /usr/local/bin/db.sh && \
     mv /usr/local/bin/crontab /etc/cron.d/wp-crontab && \
     chmod 0644 /etc/cron.d/wp-crontab && \
     crontab /etc/cron.d/wp-crontab && \
