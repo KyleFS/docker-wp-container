@@ -6,7 +6,7 @@ echo "xdebug.mode = ${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-dev.ini
 
 # Build a shell script with the core env for cron.
 printenv | sed 's/^\(.*\)$/export \1/g' | grep -E "^export WORDPRESS_[^CONFIG]" > /usr/local/bin/cron-env.sh
-chmod +x /usr/local/bin/wp-cron-env.sh
+chmod +x /usr/local/bin/cron-env.sh
 
 ###############################
 # No PHP  changes below this. #

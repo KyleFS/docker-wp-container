@@ -17,7 +17,7 @@ RUN set -ex; \
     docker-php-ext-enable igbinary apcu xdebug
 
 # Copy custom settings.
-COPY ./fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./fpm.conf /usr/local/etc/php-fpm.d/docker-dev.conf
 COPY ./php.ini /usr/local/etc/php/conf.d/docker-dev.ini
 
 # Remove the default error logging INI
