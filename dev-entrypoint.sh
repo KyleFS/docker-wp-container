@@ -22,4 +22,4 @@ wp --allow-root --quiet config shuffle-salts
 wp --allow-root --quiet rewrite flush
 
 # Run the base  images entrypoint.
-exec /usr/local/bin/docker-entrypoint.sh "$@"
+exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
