@@ -8,15 +8,17 @@ echo "xdebug.mode = ${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-dev.ini
 printenv | sed 's/^\(.*\)$/export \1/g' | grep -E "^export WORDPRESS_[^CONFIG]" > /usr/local/bin/cron-env.sh
 chmod +x /usr/local/bin/cron-env.sh
 
+wget https://raw.githubusercontent.com/KyleFS/docker-wp-config-php/main/wp-config.php -O /var/www/html/wp-config.php
+chown www-data:www-data wp-config.php
+
 ###############################
 # No PHP  changes below this. #
 ###############################
-
 # Reload the config.
 kill -USR2 1
 
 # Finalize setup.
-if [ -f /var/www/html/wp-config.php ]; then
+if [ -f /var/www/html/wp-load.php ]; then
   # There's an existing WP install.
   # Run WP-CLI commands.
   wp --allow-root --quiet option set blog_public 0
