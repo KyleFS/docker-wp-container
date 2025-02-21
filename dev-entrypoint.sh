@@ -8,6 +8,11 @@ echo "xdebug.mode = ${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-dev.ini
 printenv | sed 's/^\(.*\)$/export \1/g' | grep -E "^export WORDPRESS_[^CONFIG]" > /usr/local/bin/cron-env.sh
 chmod +x /usr/local/bin/cron-env.sh
 
+# Existing wp-config.php.
+if [ -f /var/www/html/wp-config.php ]; then
+  mv /var/www/html/wp-config.php /var/www/html/wp-config.backup.php
+fi
+
 wget https://raw.githubusercontent.com/KyleFS/docker-wp-config-php/main/wp-config.php -O /var/www/html/wp-config.php
 chown www-data:www-data wp-config.php
 
