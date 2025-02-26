@@ -23,7 +23,7 @@ chown www-data:www-data wp-config.php
 kill -USR2 1
 
 # Finalize setup.
-if [ -f /var/www/html/wp-load.php ]; then
+if [ ! -e index.php ] && [ ! -e wp-includes/version.php ]; then
   # There's an existing WP install.
   # Run WP-CLI commands.
   wp --allow-root --quiet option set blog_public 0
