@@ -10,11 +10,12 @@ chmod +x /usr/local/bin/cron-env.sh
 
 # Existing wp-config.php.
 if [ -f /var/www/html/wp-config.php ]; then
-  mv /var/www/html/wp-config.php /var/www/html/wp-config.backup.php
+  cp /var/www/html/wp-config.php /var/www/html/wp-config.backup.php
 fi
 
+rm -rf /var/www/html/wp-config.php
 wget https://raw.githubusercontent.com/KyleFS/docker-wp-config-php/main/wp-config.php -O /var/www/html/wp-config.php
-chown www-data:www-data wp-config.php
+chown www-data:www-data /var/www/html/wp-config.php
 
 ###############################
 # No PHP  changes below this. #
@@ -35,7 +36,7 @@ if [ ! -e index.php ] && [ ! -e wp-includes/version.php ]; then
 else
   # No existing WP install.
   # Run the base images entrypoint.
-  exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
+  # exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
 fi
 
 
