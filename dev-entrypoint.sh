@@ -29,6 +29,7 @@ kill -USR2 1
 # Finalize setup.
 if [ ! -e index.php ] && [ ! -e wp-includes/version.php ]; then
   # There's an existing WP install.
+  echo "Existing install found, prepping for dev."
   # Run WP-CLI commands.
   wp --allow-root --quiet option set blog_public 0
   wp --allow-root --quiet plugin install query-monitor --activate --force
@@ -39,6 +40,7 @@ if [ ! -e index.php ] && [ ! -e wp-includes/version.php ]; then
 else
   # No existing WP install.
   # Run the base images entrypoint.
+  echo "No existing install, running default docker-entrypoint."
   # exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
 fi
 
