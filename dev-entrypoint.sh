@@ -28,6 +28,11 @@ kill -USR2 1
 
 # Finalize setup.
 if [ ! -e index.php ] && [ ! -e wp-includes/version.php ]; then
+  # No existing WP install.
+  # Run the base images entrypoint.
+  echo "No existing install, running default docker-entrypoint."
+  exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
+else
   # There's an existing WP install.
   echo "Existing install found, prepping for dev."
   # Run WP-CLI commands.
@@ -37,11 +42,6 @@ if [ ! -e index.php ] && [ ! -e wp-includes/version.php ]; then
   wp --allow-root --quiet rewrite flush
   # Exec php-fpm as we won't run the default entry point.
   exec php-fpm
-else
-  # No existing WP install.
-  # Run the base images entrypoint.
-  echo "No existing install, running default docker-entrypoint."
-  exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
 fi
 
 
