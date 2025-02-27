@@ -13,9 +13,12 @@ if [ -f /var/www/html/wp-config.php ]; then
   cp /var/www/html/wp-config.php /var/www/html/wp-config.backup.php
 fi
 
+# Make sure theres no wp-config remaining.
 rm -rf /var/www/html/wp-config.php
-wget https://raw.githubusercontent.com/KyleFS/docker-wp-config-php/main/wp-config.php -O /var/www/html/wp-config.php
-chown www-data:www-data /var/www/html/wp-config.php
+
+# Download dev wp-config and set ownership correctly.
+curl -o /var/www/html/wp-config.php https://raw.githubusercontent.com/KyleFS/docker-wp-config-php/main/wp-config.php && \
+chown www-data:www-data /var/www/html/wp-config.php;
 
 ###############################
 # No PHP  changes below this. #
