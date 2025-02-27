@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Set XDebug mode based off ENV.
-XDEBUG_MODE=${XDEBUG_MODE:-off}
-echo "xdebug.mode = ${XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-dev.ini
+DEV_XDEBUG_MODE=${DEV_XDEBUG_MODE:-off}
+echo "xdebug.mode = ${DEV_XDEBUG_MODE}" >> /usr/local/etc/php/conf.d/docker-dev.ini
 
 # Build a shell script with the core env for cron.
 printenv | sed 's/^\(.*\)$/export \1/g' | grep -E "^export WORDPRESS_[^CONFIG]" > /usr/local/bin/cron-env.sh
