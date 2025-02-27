@@ -41,7 +41,7 @@ else
   # No existing WP install.
   # Run the base images entrypoint.
   echo "No existing install, running default docker-entrypoint."
-  # exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
+  exec /usr/local/bin/docker-entrypoint.sh "php-fpm"
 fi
 
 
